@@ -1,0 +1,5 @@
+django==1.10
+pymongo
+pyyaml
+xlwt
+xlrd
