@@ -1,0 +1,99 @@
+{% extends "common/base_site.html" %}
+
+{% block title %} 首页 {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+   <div class="col-md-10 col-sm-12 col-xs-12" style="margin-top:2%;margin-bottom:4%;margin-left:10%">
+      <img src="/static/images/index.png" style="width:90%;height:80%">
+   </div>
+
+  <div class="row">
+        <div class="col-md-10 col-sm-11 col-xs-11" style="margin-left:9%">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>平台每日访问量趋势</h2>
+
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+              <div id="visit_trend" style="height:300px;"></div>
+
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+<script>
+  $.ajax(
+    {
+        url: "/visitdata",
+        success: function(resp){
+            var echartLine = echarts.init(document.getElementById('visit_trend'), theme);
+                echartLine.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        x: 220,
+                        y: 40,
+                        data: ['访问次数']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            magicType: {
+                                show: true,
+                                title: {
+                                    line: 'Line',
+                                    bar: 'Bar',
+                                },
+                                type: ['line', 'bar']
+                            },
+                            restore: {
+                                show: true,
+                                title: "Restore"
+                            },
+                            saveAsImage: {
+                                show: true,
+                                title: "Save Image"
+                            }
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [{
+                        type: 'category',
+                        boundaryGap: false,
+                        data: resp.item
+                    }],
+                    yAxis: [{
+                        type: 'value'
+                    }],
+                    series: [{
+                        name: 'Visit',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'default'
+                                }
+                            }
+                        },
+                        data: resp.value
+                    }]
+                });
+            }
+    });
+
+</script>
+{% endblock javascripts %}
