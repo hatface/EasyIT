@@ -1,0 +1,61 @@
+#对象中文名称
+chinese_name : 'capability备案管理'
+
+#对象英文名称,驼峰写法，首字母小写,且需保证该字段值唯一
+english_name : 'capabilityFiling'
+
+#菜单路径，最高支持三级
+menu : '备案管理;capability备案管理'
+
+#属性
+params :
+    #属性英文名称
+    - fileName :
+        #属性中文名称
+        desc : '文件名称'
+        #属性创建类型，input为输入框，select为选择框（需填写data选项），textarea为多行文本输入框，date为日期控件，richtext为富文本控件
+        type : 'input'
+        #是否为必填字段
+        required : true
+        #字段列表显示宽度，通过百分比设置
+        width : '10%'
+    - capability :
+        desc : 'capability类型'
+        type : 'input'
+    - responsibleGroup :
+        desc : '责任组'
+        type : 'input'
+        #输入内容提示，仅对输入框有效
+    - responsiblePerson :
+        desc : '责任人'
+        type: 'input'
+        required : true
+
+    - isFilinged :
+        desc : '备案状态'
+        type : 'select'
+        data : ['已备案','未备案']
+        required : true
+    - filingDoc :
+        desc : '备案说明'
+        type: 'richtext'
+
+#自定义报表属性
+charts :
+    #报表字段
+    - total :
+        #报表中文名称
+        desc : '总数'
+        #报表类型，count为统计，pie为饼状图，bar为柱状图
+        type : 'count'
+        #用于生成报表的属性名，从上方params列表中选取
+        param : 'fileName'
+        #通过rule设置统计的规则，基于正则表达式;如果rule为单个正则，则仅针对当前字段过滤；如果rule为json字符串，则根据定义的字段规则进行过滤
+        #单个正则
+        rule : '.*'
+    - unFilinged :
+        desc : '未备案数量'
+        type : 'count'
+        param : 'status'
+        #单个正则
+        rule : '{"isFilinged":"未备案"}'
