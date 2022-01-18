@@ -1,0 +1,88 @@
+{% extends "common/base_site.html" %}
+
+{% block title %} 新建{$chinese_name$} {% endblock title %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{$chinese_name$}详情</h3>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+
+                    <div class="x_content">
+                        <br/>
+                        <form id="create_form" class="form-horizontal form-label-left">
+                            {% csrf_token %}
+                           {$form_content$}
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <a id="submit" class="btn btn-success">提交</a>
+                                    <a href="javascript:history.go(-1);" class="btn btn-link">返回</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+{{ block.super }}
+<!-- validator -->
+<script src="/static/vendors/validator/validator.js"></script>
+{% endblock javascripts %}
+
+{% block ownscripts %}
+<script>
+
+$(document).ready(function() {
+    $("#submit").click(function(e) {
+        e.preventDefault();
+        var form = $("#create_form");
+        form.parsley().validate();
+        if (form.parsley().isValid()){
+                id = getUrlParam('id');
+                url_path = "/{$english_name$}manager/create";
+                if (id){
+                  url_path += "?id="+id;
+                }
+                postData = $('form.form-horizontal').serializeJSON();
+                postJson = $.parseJSON(postData)
+                {$richtextdata$}
+                $.ajax({
+                  type: "POST",
+                  url: url_path,
+                  data: JSON.stringify(postJson),
+                   success: function(msg){
+                      window.location.href='/{$english_name$}manager/{$english_name$}list.html';
+                   },
+                   error: function(msg){
+                        alert('添加失败！')
+                     }
+                 });
+        }
+   });
+
+   {$autocomplete_content$}
+});
+
+<!--设置值-->
+{$select_init$}
+</script>
+{$richtextjs$}
+
+{% endblock ownscripts %}
