@@ -1,0 +1,235 @@
+{% extends "common/base_site.html" %}
+
+{% block title %} 新建capability备案管理 {% endblock title %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>capability备案管理详情</h3>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+
+                    <div class="x_content">
+                        <br/>
+                        <form id="create_form" class="form-horizontal form-label-left">
+                            {% csrf_token %}
+                         <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">文件名称</label>
+                                <div class="col-md-6 col-sm-9 col-xs-12">
+                                    <input name="fileName" type="text" class="form-control" required="required"  
+                                           value="{{ oldcapabilityFiling.fileName }}">
+                                </div>
+                            </div>
+                         <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">capability类型</label>
+                                <div class="col-md-6 col-sm-9 col-xs-12">
+                                    <input name="capability" type="text" class="form-control"   
+                                           value="{{ oldcapabilityFiling.capability }}">
+                                </div>
+                            </div>
+                         <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">责任组</label>
+                                <div class="col-md-6 col-sm-9 col-xs-12">
+                                    <input name="responsibleGroup" type="text" class="form-control"   
+                                           value="{{ oldcapabilityFiling.responsibleGroup }}">
+                                </div>
+                            </div>
+                         <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">责任人</label>
+                                <div class="col-md-6 col-sm-9 col-xs-12">
+                                    <input name="responsiblePerson" type="text" class="form-control" required="required"  
+                                           value="{{ oldcapabilityFiling.responsiblePerson }}">
+                                </div>
+                            </div>
+                          <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">备案状态</label>
+                                <div class="col-md-6 col-sm-9 col-xs-12">
+                                    <select name="isFilinged" class="form-control" required="required">
+                                                     <option >已备案</option>
+                 <option >未备案</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">备案说明</label>
+                                <div class="col-md-6 col-sm-8 col-xs-12">
+                                <div class="x_panel">
+                                  <div class="x_content">
+                                    <div id="alerts"></div>
+                                    <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-one">
+                                      <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                        </ul>
+                                      </div>
+                                      <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                          <li>
+                                            <a data-edit="fontSize 5">
+                                              <p style="font-size:17px">Huge</p>
+                                            </a>
+                                          </li>
+                                          <li>
+                                            <a data-edit="fontSize 3">
+                                              <p style="font-size:14px">Normal</p>
+                                            </a>
+                                          </li>
+                                          <li>
+                                            <a data-edit="fontSize 1">
+                                              <p style="font-size:11px">Small</p>
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </div>
+
+                                      <div class="btn-group">
+                                        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                                        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                                        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                                        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                                      </div>
+
+                                      <div class="btn-group">
+                                        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                                        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+                                        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
+                                        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                                      </div>
+
+                                      <div class="btn-group">
+                                        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+                                        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+                                        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+                                        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+                                      </div>
+
+                                      <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
+                                        <div class="dropdown-menu input-append">
+                                          <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
+                                          <button class="btn" type="button">Add</button>
+                                        </div>
+                                        <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
+                                      </div>
+
+                                      <div class="btn-group">
+                                        <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
+                                        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                                      </div>
+
+                                      <div class="btn-group">
+                                        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                                        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                                      </div>
+                                    </div>
+
+                                    <div id="editor-one" class="editor-wrapper"></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
+                                    <a id="submit" class="btn btn-success">提交</a>
+                                    <a href="javascript:history.go(-1);" class="btn btn-link">返回</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+{{ block.super }}
+<!-- validator -->
+<script src="/static/vendors/validator/validator.js"></script>
+{% endblock javascripts %}
+
+{% block ownscripts %}
+<script>
+
+$(document).ready(function() {
+    $("#submit").click(function(e) {
+        e.preventDefault();
+        var form = $("#create_form");
+        form.parsley().validate();
+        if (form.parsley().isValid()){
+                id = getUrlParam('id');
+                url_path = "/capabilityFilingmanager/create";
+                if (id){
+                  url_path += "?id="+id;
+                }
+                postData = $('form.form-horizontal').serializeJSON();
+                postJson = $.parseJSON(postData)
+                postJson['filingDoc'] = $('#editor-one').html();
+                $.ajax({
+                  type: "POST",
+                  url: url_path,
+                  data: JSON.stringify(postJson),
+                   success: function(msg){
+                      window.location.href='/capabilityFilingmanager/capabilityFilinglist.html';
+                   },
+                   error: function(msg){
+                        alert('添加失败！')
+                     }
+                 });
+        }
+   });
+
+   
+});
+
+<!--设置值-->
+$("[name='isFilinged']").val("{{ oldcapabilityFiling.isFilinged}}");
+</script>
+
+                <script id="contInsert">
+                   {{ oldcapabilityFiling.filingDoc | safe }}
+                </script>>
+                <script >
+                    $("#editor-one").append($("#contInsert").html());
+                    $('#editor-one').on('paste', function (e) {
+                        var items = e.originalEvent.clipboardData.items;
+                        for (var i = 0; i < items.length; ++i) {
+                            ele = this;
+                            if (items[i].kind == 'file' &&
+                                items[i].type.indexOf('image/') !== -1) {
+                
+                                var file = items[i].getAsFile();
+                                if(file)    {
+                                            var reader = new FileReader();
+                                            reader.onload = function(evt)
+                                            {
+                                                var result = evt.target.result;
+                                                var img = document.createElement('img');
+                                                img.src = result;
+                                                ele.appendChild(img);
+                                             }
+                                            reader.readAsDataURL(file);
+                                         }
+                            }
+                
+                        }
+                    });
+                </script>
+                
+
+{% endblock ownscripts %}

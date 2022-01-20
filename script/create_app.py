@@ -70,10 +70,10 @@ target = {}
 
 def create_sidebar_file():
     logger.info("start create_sidebar_file")
-    SIDEBAR_FILE = os.path.sep.join(os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1]) + "\\templates\\common\\sidebar.html"
+    SIDEBAR_FILE = os.path.sep.join(os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1]) + "/templates/common/sidebar.html"
     menu_esxit = False
     with open(SIDEBAR_FILE,'r',encoding='utf-8') as fin_in:
-        with open(target['common']+'\\sidebar.html','w',encoding='utf-8') as fin_out:
+        with open(target['common']+'/sidebar.html','w',encoding='utf-8') as fin_out:
             lines = fin_in.readlines()
             for line in lines:
                 # line = bytes.decode(line)
@@ -105,9 +105,9 @@ def create_sidebar_file():
 
 def create_url_file():
     logger.info("start create_url_file")
-    URL_FILE = os.path.sep.join(os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1]) + "\\config\\urls.py"
+    URL_FILE = os.path.sep.join(os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1]) + "/config/urls.py"
     with open(URL_FILE,'r',encoding='utf-8') as fin_in:
-        with open(target['config']+'\\urls.py','w',encoding='utf-8') as fin_out:
+        with open(target['config']+'/urls.py','w',encoding='utf-8') as fin_out:
             for line in fin_in.readlines():
                 if not "%smanager/"%config['english_name'] in line:
                     fin_out.write(line)
@@ -116,7 +116,7 @@ def create_url_file():
 
 def create_apps_files():
     logger.info("start create_apps_files")
-    tmpl_path = "demoapp\\apps\\demoapp"
+    tmpl_path = "demoapp/apps/demoapp"
     f_li = os.listdir(tmpl_path)
     for fname in f_li:
         fpath = os.path.join(tmpl_path,fname)
@@ -132,7 +132,7 @@ def create_apps_files():
 
 def create_templates_form_file():
     logger.info("start create_templates_form_file")
-    tmpl_path = "demoapp\\templates\\demoapp\\demoform.html"
+    tmpl_path = "demoapp/templates/demoapp/demoform.html"
     param_li = config['params']
     form_content = ""
     select_init = ""
@@ -350,7 +350,7 @@ def create_templates_form_file():
 
 def create_templates_list_file():
     logger.info("start create_templates_list_file")
-    tmpl_path = "demoapp\\templates\\demoapp\\demolist.html"
+    tmpl_path = "demoapp/templates/demoapp/demolist.html"
     param_li = config['params']
     cloumns_content = "{checkbox: true},"
     select = ""
@@ -407,7 +407,7 @@ def create_templates_list_file():
 
 def create_templates_report_file():
     logger.info("start create_templates_report_file")
-    tmpl_path = "demoapp\\templates\\demoapp\\demoreport.html"
+    tmpl_path = "demoapp/templates/demoapp/demoreport.html"
     param_li = config.get('charts',[])
     config['summary_content'] = ""
     config['report_content'] = ""
@@ -509,15 +509,15 @@ def create_app_folders():
     if os.path.exists(app_name):
         shutil.rmtree(os.path.split(os.path.realpath(__file__))[0]+os.path.sep+app_name)
     os.mkdir(app_name)
-    os.mkdir(app_name+"\\apps")
-    os.mkdir(app_name+ "\\templates")
-    target['apps'] = app_name + "\\apps\\"+app_name
+    os.mkdir(app_name+"/apps")
+    os.mkdir(app_name+ "/templates")
+    target['apps'] = app_name + "/apps/"+app_name
     os.mkdir(target['apps'])
-    target['templates'] = app_name + "\\templates\\" + app_name
+    target['templates'] = app_name + "/templates/" + app_name
     os.mkdir(target['templates'])
-    target['config'] =app_name + "\\config"
+    target['config'] =app_name + "/config"
     os.mkdir(target['config'] )
-    target['common'] =app_name + "\\templates\\common"
+    target['common'] =app_name + "/templates/common"
     os.mkdir(target['common'])
 
 
@@ -562,7 +562,7 @@ def deploy():
     src_dir = os.path.split(os.path.realpath(__file__))[0]+os.path.sep+config['english_name']+'manager'
     dst_dir =  os.path.sep.join(os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1])
     # shutil.copytree(src_dir, dst_dir,False)
-    cmd = "xcopy %s %s  /E/I/D/Y" % (src_dir,dst_dir)
+    cmd = "cp -r %s/* %s" % (src_dir,dst_dir)
     logger.info("copy cmd : " + cmd)
     fp = os.popen(cmd)
     logger.info(fp.read())#.decode('gbk').encode("utf-8"))
@@ -583,7 +583,7 @@ def uninstall(is_batch_mode = False):
 
 def delete_url():
     logger.info("delete %s url..." % config['english_name'])
-    URL_FILE = os.path.sep.join(os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1]) + "\\config\\urls.py"
+    URL_FILE = os.path.sep.join(os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1]) + "/config/urls.py"
     data =[]
     with open(URL_FILE, 'r+',encoding='utf-8') as f:
         for line in f.readlines():
@@ -595,7 +595,7 @@ def delete_url():
 def delete_menu():
     logger.info("delete %s menu..." % config['english_name'])
     SIDEBAR_FILE = os.path.sep.join(
-        os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1]) + "\\templates\\common\\sidebar.html"
+        os.path.split(os.path.realpath(__file__))[0].split(os.path.sep)[:-1]) + "/templates/common/sidebar.html"
     with open(SIDEBAR_FILE, 'r+',encoding='utf-8') as f:
         source = f.read()
     menu_li = config['menu'].strip(';').split(";")

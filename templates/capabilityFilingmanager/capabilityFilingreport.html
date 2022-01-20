@@ -1,0 +1,70 @@
+{% extends "common/base_site.html" %}
+
+{% block title %} 防火墙环境报表 {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="page-title">
+        <div class="title_left">
+          <h3>概览</h3>
+        </div>
+        <div class="pull-right">
+          <a href="/capabilityFilingmanager/capabilityFilinglist.html" class="btn btn-primary">返回列表</a>
+        </div>
+
+      </div>
+
+    <div class="clearfix"></div>
+      <div class="row tile_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+             <span class="count_top"><i class="fa fa-calculator"></i> 总数 </span>
+             <div id="total"  class="count purple"></div>
+           </div>    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+             <span class="count_top"><i class="fa fa-calculator"></i> 未备案数量 </span>
+             <div id="unFilinged"  class="count purple"></div>
+           </div>
+      </div>
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>统计报表 <small>capability备案管理数据分析</small></h3>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+        <div class="row">
+      
+        </div>
+       </div>
+
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super }}
+  <!-- ECharts -->
+<script>
+  
+      $.ajax(
+        {
+                url: '/capabilityFilingmanager/reportdata?type=count&param=fileName&rule=.*',
+                success: function(resp){
+                    $('#total').text(resp.data);
+                }
+        });
+    
+      $.ajax(
+        {
+                url: '/capabilityFilingmanager/reportdata?type=count&param=status&rule={"isFilinged":"未备案"}',
+                success: function(resp){
+                    $('#unFilinged').text(resp.data);
+                }
+        });
+    
+</script>
+
+{% endblock javascripts %}

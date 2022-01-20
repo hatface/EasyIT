@@ -1,0 +1,58 @@
+2022-01-19 23:49:36,576 - Log - INFO - ==================== start create new app  ====================
+2022-01-19 23:49:36,576 - Log - INFO - start parse yaml config file : config.yaml
+2022-01-19 23:49:36,583 - Log - INFO - config result : {'chinese_name': 'capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86', 'upper_english_name': 'CapabilityFiling', 'charts': [{'total': {'type': 'count', 'rule': '.*', 'param': 'fileName', 'desc': '\xe6\x80\xbb\xe6\x95\xb0'}}, {'unFilinged': {'type': 'count', 'rule': '{"isFilinged":"\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88"}', 'param': 'status', 'desc': '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88\xe6\x95\xb0\xe9\x87\x8f'}}], 'params': [{'fileName': {'width': '10%', 'required': True, 'type': 'input', 'desc': '\xe6\x96\x87\xe4\xbb\xb6\xe5\x90\x8d\xe7\xa7\xb0'}}, {'capability': {'type': 'input', 'desc': 'capability\xe7\xb1\xbb\xe5\x9e\x8b'}}, {'responsibleGroup': {'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe7\xbb\x84'}}, {'responsiblePerson': {'required': True, 'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe4\xba\xba'}}, {'isFilinged': {'data': ['\xe5\xb7\xb2\xe5\xa4\x87\xe6\xa1\x88', '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88'], 'required': True, 'type': 'select', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe7\x8a\xb6\xe6\x80\x81'}}, {'filingDoc': {'type': 'richtext', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe8\xaf\xb4\xe6\x98\x8e'}}], 'english_name': 'capabilityFiling', 'menu': '\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86;capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86'}
+2022-01-19 23:49:36,583 - Log - INFO - start create_app_folders
+2022-01-19 23:49:36,584 - Log - INFO - start create_url_file
+2022-01-19 23:51:33,689 - Log - INFO - ==================== start create new app  ====================
+2022-01-19 23:51:33,689 - Log - INFO - start parse yaml config file : config.yaml
+2022-01-19 23:51:33,696 - Log - INFO - config result : {'chinese_name': 'capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86', 'upper_english_name': 'CapabilityFiling', 'charts': [{'total': {'type': 'count', 'rule': '.*', 'param': 'fileName', 'desc': '\xe6\x80\xbb\xe6\x95\xb0'}}, {'unFilinged': {'type': 'count', 'rule': '{"isFilinged":"\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88"}', 'param': 'status', 'desc': '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88\xe6\x95\xb0\xe9\x87\x8f'}}], 'params': [{'fileName': {'width': '10%', 'required': True, 'type': 'input', 'desc': '\xe6\x96\x87\xe4\xbb\xb6\xe5\x90\x8d\xe7\xa7\xb0'}}, {'capability': {'type': 'input', 'desc': 'capability\xe7\xb1\xbb\xe5\x9e\x8b'}}, {'responsibleGroup': {'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe7\xbb\x84'}}, {'responsiblePerson': {'required': True, 'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe4\xba\xba'}}, {'isFilinged': {'data': ['\xe5\xb7\xb2\xe5\xa4\x87\xe6\xa1\x88', '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88'], 'required': True, 'type': 'select', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe7\x8a\xb6\xe6\x80\x81'}}, {'filingDoc': {'type': 'richtext', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe8\xaf\xb4\xe6\x98\x8e'}}], 'english_name': 'capabilityFiling', 'menu': '\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86;capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86'}
+2022-01-19 23:51:33,696 - Log - INFO - start create_app_folders
+2022-01-19 23:51:33,697 - Log - INFO - start create_url_file
+2022-01-19 23:51:54,146 - Log - INFO - ==================== start create new app  ====================
+2022-01-19 23:51:54,146 - Log - INFO - start parse yaml config file : config.yaml
+2022-01-19 23:51:54,153 - Log - INFO - config result : {'chinese_name': 'capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86', 'upper_english_name': 'CapabilityFiling', 'charts': [{'total': {'type': 'count', 'rule': '.*', 'param': 'fileName', 'desc': '\xe6\x80\xbb\xe6\x95\xb0'}}, {'unFilinged': {'type': 'count', 'rule': '{"isFilinged":"\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88"}', 'param': 'status', 'desc': '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88\xe6\x95\xb0\xe9\x87\x8f'}}], 'params': [{'fileName': {'width': '10%', 'required': True, 'type': 'input', 'desc': '\xe6\x96\x87\xe4\xbb\xb6\xe5\x90\x8d\xe7\xa7\xb0'}}, {'capability': {'type': 'input', 'desc': 'capability\xe7\xb1\xbb\xe5\x9e\x8b'}}, {'responsibleGroup': {'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe7\xbb\x84'}}, {'responsiblePerson': {'required': True, 'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe4\xba\xba'}}, {'isFilinged': {'data': ['\xe5\xb7\xb2\xe5\xa4\x87\xe6\xa1\x88', '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88'], 'required': True, 'type': 'select', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe7\x8a\xb6\xe6\x80\x81'}}, {'filingDoc': {'type': 'richtext', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe8\xaf\xb4\xe6\x98\x8e'}}], 'english_name': 'capabilityFiling', 'menu': '\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86;capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86'}
+2022-01-19 23:51:54,153 - Log - INFO - start create_app_folders
+2022-01-19 23:51:54,154 - Log - INFO - start create_url_file
+2022-01-19 23:51:54,154 - Log - INFO - start create_sidebar_file
+2022-01-19 23:51:54,155 - Log - INFO - menu esxited ... 
+2022-01-19 23:51:54,155 - Log - INFO - start create_apps_files
+2022-01-19 23:51:54,158 - Log - INFO - start create_templates_form_file
+2022-01-19 23:51:54,159 - Log - INFO - start create_templates_list_file
+2022-01-19 23:51:54,162 - Log - INFO - start create_templates_report_file
+2022-01-19 23:51:54,163 - Log - INFO - start create_import_template
+2022-01-19 23:51:54,165 - Log - INFO - start deploy new app capabilityFiling to project
+2022-01-19 23:51:54,165 - Log - INFO - copy cmd : xcopy /Users/kongzhen/workspace/guojingcai/EasyIT/script/capabilityFilingmanager /Users/kongzhen/workspace/guojingcai/EasyIT  /E/I/D/Y
+2022-01-19 23:51:54,171 - Log - INFO - 
+2022-01-19 23:51:54,171 - Log - INFO - deploy app successfully !
+2022-01-19 23:53:06,502 - Log - INFO - ==================== start create new app  ====================
+2022-01-19 23:53:06,502 - Log - INFO - start parse yaml config file : config.yaml
+2022-01-19 23:53:06,509 - Log - INFO - config result : {'chinese_name': 'capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86', 'upper_english_name': 'CapabilityFiling', 'charts': [{'total': {'type': 'count', 'rule': '.*', 'param': 'fileName', 'desc': '\xe6\x80\xbb\xe6\x95\xb0'}}, {'unFilinged': {'type': 'count', 'rule': '{"isFilinged":"\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88"}', 'param': 'status', 'desc': '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88\xe6\x95\xb0\xe9\x87\x8f'}}], 'params': [{'fileName': {'width': '10%', 'required': True, 'type': 'input', 'desc': '\xe6\x96\x87\xe4\xbb\xb6\xe5\x90\x8d\xe7\xa7\xb0'}}, {'capability': {'type': 'input', 'desc': 'capability\xe7\xb1\xbb\xe5\x9e\x8b'}}, {'responsibleGroup': {'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe7\xbb\x84'}}, {'responsiblePerson': {'required': True, 'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe4\xba\xba'}}, {'isFilinged': {'data': ['\xe5\xb7\xb2\xe5\xa4\x87\xe6\xa1\x88', '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88'], 'required': True, 'type': 'select', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe7\x8a\xb6\xe6\x80\x81'}}, {'filingDoc': {'type': 'richtext', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe8\xaf\xb4\xe6\x98\x8e'}}], 'english_name': 'capabilityFiling', 'menu': '\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86;capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86'}
+2022-01-19 23:53:06,509 - Log - INFO - start create_app_folders
+2022-01-19 23:53:06,509 - Log - INFO - start create_url_file
+2022-01-19 23:53:06,510 - Log - INFO - start create_sidebar_file
+2022-01-19 23:53:06,511 - Log - INFO - menu esxited ... 
+2022-01-19 23:53:06,512 - Log - INFO - start create_apps_files
+2022-01-19 23:53:06,514 - Log - INFO - start create_templates_form_file
+2022-01-19 23:53:06,516 - Log - INFO - start create_templates_list_file
+2022-01-19 23:53:06,518 - Log - INFO - start create_templates_report_file
+2022-01-19 23:53:06,519 - Log - INFO - start create_import_template
+2022-01-19 23:53:06,521 - Log - INFO - start deploy new app capabilityFiling to project
+2022-01-19 23:53:06,522 - Log - INFO - copy cmd : cp -r /Users/kongzhen/workspace/guojingcai/EasyIT/script/capabilityFilingmanager /Users/kongzhen/workspace/guojingcai/EasyIT
+2022-01-19 23:53:06,531 - Log - INFO - 
+2022-01-19 23:53:06,531 - Log - INFO - deploy app successfully !
+2022-01-19 23:56:21,427 - Log - INFO - ==================== start create new app  ====================
+2022-01-19 23:56:21,427 - Log - INFO - start parse yaml config file : config.yaml
+2022-01-19 23:56:21,434 - Log - INFO - config result : {'chinese_name': 'capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86', 'upper_english_name': 'CapabilityFiling', 'charts': [{'total': {'type': 'count', 'rule': '.*', 'param': 'fileName', 'desc': '\xe6\x80\xbb\xe6\x95\xb0'}}, {'unFilinged': {'type': 'count', 'rule': '{"isFilinged":"\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88"}', 'param': 'status', 'desc': '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88\xe6\x95\xb0\xe9\x87\x8f'}}], 'params': [{'fileName': {'width': '10%', 'required': True, 'type': 'input', 'desc': '\xe6\x96\x87\xe4\xbb\xb6\xe5\x90\x8d\xe7\xa7\xb0'}}, {'capability': {'type': 'input', 'desc': 'capability\xe7\xb1\xbb\xe5\x9e\x8b'}}, {'responsibleGroup': {'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe7\xbb\x84'}}, {'responsiblePerson': {'required': True, 'type': 'input', 'desc': '\xe8\xb4\xa3\xe4\xbb\xbb\xe4\xba\xba'}}, {'isFilinged': {'data': ['\xe5\xb7\xb2\xe5\xa4\x87\xe6\xa1\x88', '\xe6\x9c\xaa\xe5\xa4\x87\xe6\xa1\x88'], 'required': True, 'type': 'select', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe7\x8a\xb6\xe6\x80\x81'}}, {'filingDoc': {'type': 'richtext', 'desc': '\xe5\xa4\x87\xe6\xa1\x88\xe8\xaf\xb4\xe6\x98\x8e'}}], 'english_name': 'capabilityFiling', 'menu': '\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86;capability\xe5\xa4\x87\xe6\xa1\x88\xe7\xae\xa1\xe7\x90\x86'}
+2022-01-19 23:56:21,435 - Log - INFO - start create_app_folders
+2022-01-19 23:56:21,437 - Log - INFO - start create_url_file
+2022-01-19 23:56:21,437 - Log - INFO - start create_sidebar_file
+2022-01-19 23:56:21,439 - Log - INFO - menu esxited ... 
+2022-01-19 23:56:21,439 - Log - INFO - start create_apps_files
+2022-01-19 23:56:21,442 - Log - INFO - start create_templates_form_file
+2022-01-19 23:56:21,443 - Log - INFO - start create_templates_list_file
+2022-01-19 23:56:21,446 - Log - INFO - start create_templates_report_file
+2022-01-19 23:56:21,447 - Log - INFO - start create_import_template
+2022-01-19 23:56:21,450 - Log - INFO - start deploy new app capabilityFiling to project
+2022-01-19 23:56:21,450 - Log - INFO - copy cmd : cp -r /Users/kongzhen/workspace/guojingcai/EasyIT/script/capabilityFilingmanager/* /Users/kongzhen/workspace/guojingcai/EasyIT
+2022-01-19 23:56:21,457 - Log - INFO - 
+2022-01-19 23:56:21,457 - Log - INFO - deploy app successfully !

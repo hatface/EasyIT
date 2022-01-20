@@ -1,0 +1,572 @@
+{% extends "common/base_site.html" %}
+
+{% block title %} capability备案管理管理 {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+
+  <link rel="stylesheet" href="/static/build/css/bootstrap-table.css">
+  <link rel="stylesheet" href="/static/build/css/bootstrap-editable.css">
+  <link rel="stylesheet" href="/static/build/css/bootstrap-table-filter-control.css">
+  <link rel="stylesheet" href="/static/vendors/select2/dist/css/select2.min.css">
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>capability备案管理列表 </h3>
+        </div>
+          <div class="pull-right">
+            <a href="/capabilityFilingmanager/capabilityFilingreport.html" class="btn btn-info">数据报表</a>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div >
+              <div id="toolbar">
+                <h2>
+                    <a href="/capabilityFilingmanager/capabilityFilingform.html" class="btn btn-success">添加capability备案管理</a>
+                    <a id="batchDelete" class="btn btn-danger">批量删除</a>
+                    <a id="batchModify" class="btn btn-warning">批量修改</a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import">
+                    批量导入
+                    </button>
+                </h2>
+
+              </div>
+              <table id="table"
+                   data-toolbar="#toolbar"
+                   data-search-on-enter-key="true"
+                   data-show-refresh="true"
+                   data-show-toggle="true"
+                   data-show-columns="true"
+                   data-striped="true"
+                   data-show-export="true"
+                   data-detail-view="true"
+                   data-detail-formatter="detailFormatter"
+                   data-minimum-count-columns="2"
+                   data-pagination="true"
+                   data-id-field="id"
+                   data-undefined-text = ""
+                   data-page-size="10"
+                   data-page-list="[10, 25, 50, 100, ALL]"
+                   data-show-footer="false"
+                   data-side-pagination="server"
+                   data-url="/capabilityFilingmanager/capabilityFilingdata"
+                   data-response-handler="responseHandler"
+                style="white-space:pre-wrap ; word-wrap:break-word;"
+              >
+
+              </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div id="import" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:30%">
+        <div class="modal-content">
+            <div class="modal-header bg-primary" style="background-color: #009688;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">文件导入</h4>
+            </div>
+            <div class="modal-body">
+                <div style="text-align:left;padding:5px">
+                    <a href="/capabilityFilingmanager/template" onclick="javascript:Preview();">
+                        <span style="font-size:larger;font-weight:200;color:blue">导入模板.xls</span>
+                    </a>
+                </div>
+                <hr/>
+                <form id="ffImport" method="post">
+                    <div title="Excel导入操作" style="padding: 5px">
+                        <input id="excelFile" type="file">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="importdata()">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="batchDeleteModal" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="batchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:30%">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h4 class="modal-title">确认删除？</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="batchDelete()">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="batchModifyModal" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="batchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:30%">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h4 class="modal-title">批量修改</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <form id="tag_form" method="post">
+
+                    <div >
+                        <label>字段名称：</label>
+                        <select name="select_key" class="form-control" required="required">
+
+                                <option value="fileName">文件名称</option>
+                                 
+
+                                <option value="capability">capability类型</option>
+                                 
+
+                                <option value="responsibleGroup">责任组</option>
+                                 
+
+                                <option value="responsiblePerson">责任人</option>
+                                 
+
+                                <option value="isFilinged">备案状态</option>
+                                 
+
+                                <option value="filingDoc">备案说明</option>
+                                 
+                        </select>
+                        <br>
+                        <label>修改内容：</label>
+                        <input name="select_value" type="text"  class="form-control" required="required">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="batchModify()">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " id="richtextModal" tabindex="-1" role="dialog" aria-labelledby="richtextModalLabel" aria-hidden="true"  data-keyboard="false" >
+    <div class="modal-dialog " role="document" style="width:90%;text-align:center;">
+        <div class="modal-content" style="display:inline-block;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="richtextModalLabel">详情</h5>
+                <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="richtextModalBody" style="text-align:left;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block ownscripts %}
+<script>
+    function importdata(){
+        initTemplateImport('capabilityFiling')
+    }
+
+    var $table = $('#table'),
+        $remove = $('#remove'),
+        selections = [];
+
+    function batchDelete(){
+        $.get('/capabilityFilingmanager/delete?id='+selections, function( data ) {
+            window.location.href='/capabilityFilingmanager/capabilityFilinglist.html';
+        });
+    }
+    function batchModify(){
+        var form = $("#tag_form");
+        form.parsley().validate();
+        if (form.parsley().isValid()){
+                url_path = "/capabilityFilingmanager/create?id="+selections;
+                postData = $('#tag_form').serializeJSON();
+                postData = JSON.parse(postData)
+                tmpdata = {}
+                tmpdata[postData.select_key] = postData.select_value
+                postData = JSON.stringify(tmpdata)
+                $.ajax({
+                  type: "POST",
+                  url: url_path,
+                  data: postData,
+                   success: function(msg){
+                      window.location.href='/capabilityFilingmanager/capabilityFilinglist.html';
+                   },
+                   error: function(msg){
+                        alert('修改失败！')
+                     }
+                 });
+        }
+    }
+    function getIdSelections() {
+        return $.map($table.bootstrapTable('getSelections'), function (row) {
+            return row.id
+        });
+    }
+
+    function responseHandler(res) {
+        $.each(res.rows, function (i, row) {
+            row.state = $.inArray(row.id, selections) !== -1;
+        });
+        return res;
+    }
+
+    function operateFormatter(value, row, index) {
+        return [
+
+            '<a class="update" href="javascript:void(0)" title="修改">',
+            '<i class="fa fa-pencil"></i>',
+            '</a>  ',
+            '<a class="copy" href="javascript:void(0)" title="复制">',
+            '<i class="fa fa-copy"></i>',
+            '</a>  ',
+            '<a class="remove" href="javascript:void(0)" title="删除">',
+            '<i class="fa fa-trash-o"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    window.operateEvents = {
+        'click .update': function (e, value, row, index) {
+            window.location.href='/capabilityFilingmanager/capabilityFilingform.html?id='+row.id;
+        },
+        'click .copy': function (e, value, row, index) {
+            window.location.href='/capabilityFilingmanager/capabilityFilingform.html?copyid='+row.id;
+        },
+        'click .remove': function (e, value, row, index) {
+            var r=confirm("确认删除？");
+            if (r==true)
+              {
+                $.get('/capabilityFilingmanager/delete?id='+row.id, function( data ) {
+                  window.location.href='/capabilityFilingmanager/capabilityFilinglist.html';
+                });
+              }
+            else
+              {
+                return;
+              }
+        }
+    };
+
+    function getHeight() {
+        return $(window).height() - 100;
+    }
+
+    function richtextFormatter(value, row, index) {
+
+
+        if (value!=undefined && value.replace(/[\s\r\n]/g,'').replace(/(\<br\>|\<\/br\>|\<\/div\>|\<div\>)/g,"").length >0)
+           return [
+                 '<a class="views" href="javascript:void(0)"  style="color:#0088cc" data-toggle="modal" data-target="#richtextModal" title="查看详情">',
+                '<i class="fa fa-eye"></i>',
+                '</a>  ',
+            ].join('');
+    }
+
+    window.richcontentEvents = {
+       'click .views': function (e, value, row, index) {
+            $('#richtextModalBody').empty();
+            $('#richtextModalBody').append(value);
+        },
+    }
+
+    cloumns_info = [
+{checkbox: true},
+                    {
+                        title: '文件名称',
+                        field: 'fileName',
+                        align: 'center',
+                        sortable: true,
+                        visible:true,
+                        width : "10%" ,
+                        filter: {
+                                  type: "input",
+                                }
+                    },
+
+                    {
+                        title: 'capability类型',
+                        field: 'capability',
+                        align: 'center',
+                        sortable: true,
+                        visible:true,
+                        
+                        filter: {
+                                  type: "input",
+                                }
+                    },
+
+                    {
+                        title: '责任组',
+                        field: 'responsibleGroup',
+                        align: 'center',
+                        sortable: true,
+                        visible:true,
+                        
+                        filter: {
+                                  type: "input",
+                                }
+                    },
+
+                    {
+                        title: '责任人',
+                        field: 'responsiblePerson',
+                        align: 'center',
+                        sortable: true,
+                        visible:true,
+                        
+                        filter: {
+                                  type: "input",
+                                }
+                    },
+
+                    {
+                        title: '备案状态',
+                        field: 'isFilinged',
+                        align: 'center',
+                        sortable: true,
+                        visible:true,
+                        
+                        filter: {
+                          type: "select",
+                          data: ["已备案","未备案"]
+                        }
+                    },
+
+                    {
+                        title: '备案说明',
+                        field: 'filingDoc',
+                        align: 'center',
+                        sortable: true,
+                        visible:true,
+                        formatter : richtextFormatter ,
+                        events:richcontentEvents,
+                        filter: {
+                                  type: "input",
+                                }
+                    },
+                    {
+                        field: 'operate',
+                        title: '操作选项',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    },
+
+                ];
+
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+
+    function getFilterValues(){
+        var filterValues = {};
+        for (index in cloumns_info){
+          if (cloumns_info[index]['filter']){
+            field = cloumns_info[index]['field']
+            va = getCookie(field)
+            if (va!=""){
+              filterValues[field] = va;
+            }
+          }
+        }
+        return filterValues;
+    }
+
+    function setVisibCache(){
+        for (index in cloumns_info){
+            field = cloumns_info[index]['field']
+            va = getCookie(field+"_cloumn")
+            if (va!=""){
+              if (va=="true")
+                flag = true;
+               else
+                flag = false;
+              cloumns_info[index]['visible'] = flag;
+            }
+          }
+    }
+    setVisibCache();
+    function initTable() {
+        $table.bootstrapTable({
+            filter: true,
+            filterValues: getFilterValues(),
+            height: getHeight(),
+            columns: [
+                cloumns_info
+            ]
+        });
+        $table.bootstrapTable("setFilterValues", getFilterValues());
+        // sometimes footer render error.
+        setTimeout(function () {
+            $table.bootstrapTable('resetView');
+        }, 200);
+        $table.on('check.bs.table uncheck.bs.table ' +
+                'check-all.bs.table uncheck-all.bs.table', function () {
+            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+
+            // save your data, here just save the current page
+            selections = getIdSelections();
+            // push or splice the selections if you want to save all data selections
+        });
+        $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+
+        });
+        $table.on('all.bs.table', function (e, name, args) {
+            console.log(name, args);
+             if (name == "column-switch.bs.table"){
+                var baseURI = e.currentTarget.baseURI;
+                var b = baseURI.split("//")[1];
+                var path = b.replace(b.split('/',1)[0],"");
+                var d = new Date();
+                d.setTime(d.getTime() + (30*24*60*60*1000));
+                var expires = "expires="+ d.toUTCString();
+                document.cookie = args[0] + "_cloumn=" + args[1] + ";" + expires + ";path="+path;
+            }
+        });
+        $remove.click(function () {
+            var ids = getIdSelections();
+            $remove.prop('disabled', true);
+        });
+        $(window).resize(function () {
+            $table.bootstrapTable('resetView', {
+                height: getHeight()
+            });
+        });
+    }
+
+
+    function detailFormatter(index, row) {
+        var html = [];
+        $.each(row, function (key, value) {
+            name = key
+            for (index in cloumns_info){
+              if (cloumns_info[index]['field'] == key && key!='state'){
+                name = cloumns_info[index]['title'];
+                html.push('<p><b>' + name + ':</b> ' + value + '</p>');
+                break;
+              }
+            }
+        });
+        return html.join('');
+    }
+
+
+    $(function () {
+        var scripts = [
+                '/static/build/js/bootstrap-table.js',
+                '/static/build/js/bootstrap-table-export.js',
+                '/static/build/js/tableExport.js',
+                '/static/build/js/bootstrap-table-editable.js',
+                '/static/build/js/bootstrap-editable.js',
+                '/static/build/js/select2.min.js',
+                '/static/build/js/bootstrap-table-select2-filter.js'
+            ],
+            eachSeries = function (arr, iterator, callback) {
+                callback = callback || function () {};
+                if (!arr.length) {
+                    return callback();
+                }
+                var completed = 0;
+                var iterate = function () {
+                    iterator(arr[completed], function (err) {
+                        if (err) {
+                            callback(err);
+                            callback = function () {};
+                        }
+                        else {
+                            completed += 1;
+                            if (completed >= arr.length) {
+                                callback(null);
+                            }
+                            else {
+                                iterate();
+                            }
+                        }
+                    });
+                };
+                iterate();
+            };
+
+        eachSeries(scripts, getScript, initTable);
+    });
+
+
+
+    function getScript(url, callback) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = url;
+
+        var done = false;
+        // Attach handlers for all browsers
+        script.onload = script.onreadystatechange = function() {
+            if (!done && (!this.readyState ||
+                    this.readyState == 'loaded' || this.readyState == 'complete')) {
+                done = true;
+                if (callback)
+                    callback();
+
+                // Handle memory leak in IE
+                script.onload = script.onreadystatechange = null;
+            }
+        };
+
+        head.appendChild(script);
+
+        // We handle everything using the script element injection
+        return undefined;
+    }
+    $('document').ready(function(){
+        $('#batchDelete').click(function(){
+            selections = getIdSelections();
+            if (selections.length == 0)
+                alert('请至少选择一条记录！');
+            else{
+                $('#batchDeleteModal').modal();
+            }
+        });
+
+        $('#batchModify').click(function(){
+            selections = getIdSelections();
+            if (selections.length == 0)
+                alert('请至少选择一条记录！');
+            else{
+                $('#batchModifyModal').modal();
+            }
+        });
+    })
+</script>
+{% endblock ownscripts %}

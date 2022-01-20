@@ -3,6 +3,6 @@
 # @Author  : x00293437
 import pymongo
 
-MONGODB_HOST = "127.0.0.1"
+MONGODB_HOST = "172.16.136.157"
 DATABASE_NAME = "EasyIT"
 DBCONNECT = pymongo.MongoClient(host=MONGODB_HOST, port=27017).get_database(DATABASE_NAME)
