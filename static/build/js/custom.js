@@ -1,3 +1,149 @@
+function easyit_init_barchart(echartid,item,value){
+    var echartBar = echarts.init(document.getElementById(echartid), theme);
+        echartBar.setOption({
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['数量']
+            },
+            calculable: false,
+
+            xAxis: [{
+                type: 'category',
+                data: item,
+                axisLabel: {
+                   interval:0,
+                   rotate:-30,
+                   height: 100,
+                }
+            }],
+            yAxis: [{
+                type: 'value'
+            }],
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: value,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside'
+                    }
+                },
+            }]
+      });
+}
+
+
+function easyit_init_piechart(echartid,item,value){
+    var echartPie = echarts.init(document.getElementById(echartid), theme);
+    echartPie.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            x: 'center',
+            y: 'bottom',
+            data: item
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                magicType: {
+                    show: true,
+                    type: ['pie', 'funnel'],
+                    option: {
+                        funnel: {
+                            x: '25%',
+                            width: '50%',
+                            funnelAlign: 'left',
+                            max: 1548
+                        }
+                    }
+                },
+                restore: {
+                    show: true,
+                    title: "Restore"
+                },
+                saveAsImage: {
+                    show: true,
+                    title: "Save Image"
+                }
+            }
+        },
+        calculable: true,
+        series: [{
+            name: '数量',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '48%'],
+            data: value,
+            label: {
+                        normal: {
+                            show: true,
+                            formatter: '{b}:{c}' + '\n\r' + '({d}%)'
+                        }
+                    }
+        }]
+    });
+
+}
+
+function easyit_init_linechart(echartid,item,value){
+    var echartLine = echarts.init(document.getElementById(echartid), theme);
+    echartLine.setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                magicType: {
+                    show: true,
+                    title: {
+                        line: 'Line',
+                        bar: 'Bar',
+                        stack: 'Stack',
+                        tiled: 'Tiled'
+                    },
+                    type: ['line', 'bar', 'stack', 'tiled']
+                },
+                restore: {
+                    show: true,
+                    title: "Restore"
+                },
+                saveAsImage: {
+                    show: true,
+                    title: "Save Image"
+                }
+            }
+        },
+        calculable: true,
+        xAxis: [{
+            type: 'category',
+            boundaryGap: false,
+            data: item
+        }],
+        yAxis: [{
+            type: 'value'
+        }],
+        series: [{
+            name: 'Deal',
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        type: 'default'
+                    }
+                }
+            },
+            data: value
+        }]
+    });
+}
 function init_echarts() {
 
     if (typeof(echarts) === 'undefined') {
