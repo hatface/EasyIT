@@ -1,0 +1,600 @@
+            splitLine: {
+                length: 18,
+                lineStyle: {
+                    color: 'auto'
+                }
+            },
+            pointer: {
+                length: '90%',
+                color: 'auto'
+            },
+            title: {
+                textStyle: {
+                    color: '#333'
+                }
+            },
+            detail: {
+                textStyle: {
+                    color: 'auto'
+                }
+            }
+        },
+        textStyle: {
+            fontFamily: 'Arial, Verdana, sans-serif'
+        }
+    };
+
+function updateRegressionData(deviceName,moduleName,dataType){
+
+$.get("/fwmanager/regressiondata?deviceName="+deviceName+"&moduleName="+moduleName+"&dataType="+dataType, function (respdata, status){
+    $("#RegressionData").empty();
+    $("#RegressionData").removeAttr('_echarts_instance_');
+    var myChart = echarts.init(document.getElementById('RegressionData'));
+    var data = respdata.echarts_item;
+    var timelist = respdata.time_list
+
+    var start_time = timelist[0]
+    var end_time = timelist[timelist.length-1]
+     //
+    var myRegression = ecStat.regression('linear', data);
+
+    myRegression.points.sort(function(a, b) {
+        return a[0] - b[0];
+    });
+
+    var riskvalue = respdata.highrisk
+    var risktext = "";
+    if (riskvalue)
+        risktext = "(风险值："+riskvalue;
+        risktext += " ; 每日泄露量预测："+respdata.daily_increase+"KB)";
+    $("#mem-modal-header span").text(moduleName+' 使用率拟合'+risktext);
+    option = {
+        backgroundColor: '#F5F5F5',
+        title: {
+            text: "数据时间："+start_time+"→"+end_time,
+            left: 'center',
+            textStyle :{
+                fontSize: 13,
+                color: '#999',
+                fontWeight: 'normal'
+            }
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        dataZoom:{
+             orient:"horizontal", //水平显示
+             show:true, //显示滚动条
+           },
+       toolbox: {
+            show: true,
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'value',
+            splitLine: {
+                lineStyle: {
+                    type: 'dashed'
+                }
+            },
+            name:'(min)',
+        },
+        yAxis: {
+            type: 'value',
+            min: 'dataMin',
+            name:'内存使用率(kB)',
+            splitLine: {
+                lineStyle: {
+                    type: 'dashed'
+                }
+            },
+        },
+        series: [{
+            name: 'scatter',
+            type: 'scatter',
+            label: {
+                emphasis: {
+                    show: true,
+                    position: 'left',
+                    textStyle: {
+                        color: 'blue',
+                        fontSize: 16
+                    }
+                }
+            },
+            data: data
+        }, {
+            name: 'line',
+            type: 'line',
+            showSymbol: false,
+            data: myRegression.points,
+            markPoint: {
+                itemStyle: {
+                    normal: {
+                        color: 'transparent'
+                    }
+                },
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'left',
+                        formatter: myRegression.expression,
+                        textStyle: {
+                            color: '#333',
+                            fontSize: 14
+                        }
+                    }
+                },
+                data: [{
+                    coord: myRegression.points[myRegression.points.length - 1]
+                }]
+            }
+        }]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    $('#myModal').modal();
+    });
+}
+
+//===========modify by xubin 00293437===========
+function easyit_init_barchart(echartid,item,value){
+    var echartBar = echarts.init(document.getElementById(echartid), theme);
+        echartBar.setOption({
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['数量']
+            },
+            calculable: false,
+
+            xAxis: [{
+                type: 'category',
+                data: item,
+                axisLabel: {
+                   interval:0,
+                   rotate:-30,
+                   height: 100,
+                }
+            }],
+            yAxis: [{
+                type: 'value'
+            }],
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: value,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside'
+                    }
+                },
+            }]
+      });
+}
+
+
+function easyit_init_piechart(echartid,item,value){
+    var echartPie = echarts.init(document.getElementById(echartid), theme);
+    echartPie.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            x: 'center',
+            y: 'bottom',
+            data: item
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                magicType: {
+                    show: true,
+                    type: ['pie', 'funnel'],
+                    option: {
+                        funnel: {
+                            x: '25%',
+                            width: '50%',
+                            funnelAlign: 'left',
+                            max: 1548
+                        }
+                    }
+                },
+                restore: {
+                    show: true,
+                    title: "Restore"
+                },
+                saveAsImage: {
+                    show: true,
+                    title: "Save Image"
+                }
+            }
+        },
+        calculable: true,
+        series: [{
+            name: '数量',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '48%'],
+            data: value,
+            label: {
+                        normal: {
+                            show: true,
+                            formatter: '{b}:{c}' + '\n\r' + '({d}%)'
+                        }
+                    }
+        }]
+    });
+
+}
+
+function easyit_init_linechart(echartid,item,value){
+    var echartLine = echarts.init(document.getElementById(echartid), theme);
+    echartLine.setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                magicType: {
+                    show: true,
+                    title: {
+                        line: 'Line',
+                        bar: 'Bar',
+                        stack: 'Stack',
+                        tiled: 'Tiled'
+                    },
+                    type: ['line', 'bar', 'stack', 'tiled']
+                },
+                restore: {
+                    show: true,
+                    title: "Restore"
+                },
+                saveAsImage: {
+                    show: true,
+                    title: "Save Image"
+                }
+            }
+        },
+        calculable: true,
+        xAxis: [{
+            type: 'category',
+            boundaryGap: false,
+            data: item
+        }],
+        yAxis: [{
+            type: 'value'
+        }],
+        series: [{
+            name: 'Deal',
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        type: 'default'
+                    }
+                }
+            },
+            data: value
+        }]
+    });
+}
+//===========modify by xubin 00293437===========
+
+
+
+function init_echarts() {
+
+    if (typeof(echarts) === 'undefined') {
+        return;
+    }
+    console.log('init_echarts');
+
+
+    //echart Line
+    if ($('#deploy_trend').length){
+        $.ajax(
+    {
+        url: "/secm/envreportdata",
+        success: function(resp){
+
+            $('#total_count').text(resp.summary.total_count)
+            $('#zabbix_count').text(resp.summary.zabbix_count)
+            $('#codecoverage_count').text(resp.summary.codecoverage_count)
+            $('#user_count').text(resp.summary.user_count)
+            $('#deploy_count').text(resp.summary.deploy_count)
+            $('#save_time').text(resp.summary.save_time)
+
+
+            if ($('#deploy_trend').length) {
+                    var echartLine = echarts.init(document.getElementById('deploy_trend'), theme);
+                    echartLine.setOption({
+                        title: {
+                            text: '部署次数',
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            x: 220,
+                            y: 40,
+                            data: ['版本部署']
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                magicType: {
+                                    show: true,
+                                    title: {
+                                        line: 'Line',
+                                        bar: 'Bar',
+                                        stack: 'Stack',
+                                        tiled: 'Tiled'
+                                    },
+                                    type: ['line', 'bar', 'stack', 'tiled']
+                                },
+                                restore: {
+                                    show: true,
+                                    title: "Restore"
+                                },
+                                saveAsImage: {
+                                    show: true,
+                                    title: "Save Image"
+                                }
+                            }
+                        },
+                        calculable: true,
+                        xAxis: [{
+                            type: 'category',
+                            boundaryGap: false,
+                            data: resp.trend_data.item
+                        }],
+                        yAxis: [{
+                            type: 'value'
+                        }],
+                        series: [{
+                            name: 'Deal',
+                            type: 'line',
+                            smooth: true,
+                            itemStyle: {
+                                normal: {
+                                    areaStyle: {
+                                        type: 'default'
+                                    }
+                                }
+                            },
+                            data: resp.trend_data.value
+                        }]
+                    });
+
+                }
+
+                   //echart Bar Horizontal
+
+            if ($('#depoly_top10').length) {
+
+                var echartBar = echarts.init(document.getElementById('depoly_top10'), theme);
+
+                echartBar.setOption({
+                    title: {
+                        text: '环境名称',
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        x: 300,
+                        data: ['次数']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            saveAsImage: {
+                                show: true,
+                                title: "Save Image"
+                            }
+                        }
+                    },
+                    grid: {
+                        left: '30%'
+                        },
+                    calculable: true,
+                    xAxis: [{
+                        type: 'value',
+                    }],
+                    yAxis: [{
+                        type: 'category',
+                        data: resp.top_data.item.reverse()
+                    }],
+                    series: [{
+                        name: '次数',
+                        type: 'bar',
+                        data: resp.top_data.value.reverse()
+                    }]
+                });
+
+            }
+                    //echart Bar
+
+            if ($('#group_count').length) {
+
+                var echartBar = echarts.init(document.getElementById('group_count'), theme);
+                echartBar.setOption({
+                    title: {
+                        text: '项目组环境数量统计',
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['数量']
+                    },
+                    toolbox: {
+                        show: false
+                    },
+                    calculable: false,
+
+                    xAxis: [{
+                        type: 'category',
+                        data: resp.group_data.item,
+                        axisLabel: {
+                           interval:0,
+                           rotate:40
+                        }
+                    }],
+                    yAxis: [{
+                        type: 'value'
+                    }],
+                    series: [{
+                        name: '数量',
+                        type: 'bar',
+                        data: resp.group_data.value,
+                    }]
+                });
+
+            }
+
+            if ($('#server_configuration').length) {
+
+                var echartBar = echarts.init(document.getElementById('server_configuration'), theme);
+
+                echartBar.setOption({
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['数量']
+                    },
+                    toolbox: {
+                        show: false
+                    },
+                    calculable: false,
+                    xAxis: [{
+                        type: 'category',
+                        data: resp.server_config.item,
+                        axisLabel: {
+                           interval:0,
+                           rotate:40
+                        }
+                    }],
+                    yAxis: [{
+                        type: 'value'
+                    }],
+                    series: [{
+                        name: '数量',
+                        type: 'bar',
+                        data: resp.server_config.value,
+                    }]
+                });
+
+            }
+
+                     //echart Pie
+
+            if ($('#device_status').length) {
+
+                var echartPie = echarts.init(document.getElementById('device_status'), theme);
+
+                echartPie.setOption({
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            magicType: {
+                                show: true,
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        width: '50%',
+                                        funnelAlign: 'left',
+                                        max: 1548
+                                    }
+                                }
+                            },
+                            restore: {
+                                show: true,
+                                title: "Restore"
+                            },
+                            saveAsImage: {
+                                show: true,
+                                title: "Save Image"
+                            }
+                        }
+                    },
+                    calculable: true,
+                    series: [{
+                        name: '设备状态',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '48%'],
+                        data: resp.device_status
+                    }]
+                });
+
+                var dataStyle = {
+                    normal: {
+                        label: {
+                            show: false
+                        },
+                        labelLine: {
+                            show: false
+                        }
+                    }
+                };
+
+                var placeHolderStyle = {
+                    normal: {
+                        color: 'rgba(0,0,0,0)',
+                        label: {
+                            show: false
+                        },
+                        labelLine: {
+                            show: false
+                        }
+                    },
+                    emphasis: {
+                        color: 'rgba(0,0,0,0)'
+                    }
+                };
+
+            }
+              if ($('#server_status').length) {
+
+                var echartPie = echarts.init(document.getElementById('server_status'), theme);
+
+                echartPie.setOption({
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        x: 'center',
+                        y: 'bottom',
+                        data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            magicType: {
+                                show: true,
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        width: '50%',
