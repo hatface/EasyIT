@@ -1,0 +1,600 @@
+    width: 100%;
+    height: 42px;
+    padding: 3px;
+    background: #ececec;
+    margin-top: 40px;
+    margin-left: 1px
+}
+ul.widget_profile_box li:first-child {
+    width: 25%;
+    float: left
+}
+ul.widget_profile_box li:first-child a {
+    float: left
+}
+ul.widget_profile_box li:last-child {
+    width: 25%;
+    float: right
+}
+ul.widget_profile_box li:last-child a {
+    float: right
+}
+ul.widget_profile_box li a {
+    font-size: 22px;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(52, 73, 94, 0.44);
+    display: block;
+    border-radius: 50%;
+    padding: 0px
+}
+ul.widget_profile_box li a:hover {
+    color: #1ABB9C !important;
+    border: 1px solid #26b99a
+}
+ul.widget_profile_box li .profile_img {
+    width: 85px;
+    height: 85px;
+    margin: 0;
+    margin-top: -28px
+}
+.widget_tally_box p,
+.widget_tally_box span {
+    text-align: center
+}
+.widget_tally_box .name {
+    text-align: center;
+    margin: 25px
+}
+.widget_tally_box .name_title {
+    text-align: center;
+    margin: 5px
+}
+.widget_tally_box ul.legend {
+    margin: 0
+}
+.widget_tally_box ul.legend p,
+.widget_tally_box ul.legend span {
+    text-align: left
+}
+.widget_tally_box ul.legend li .icon {
+    font-size: 20px;
+    float: left;
+    width: 14px
+}
+.widget_tally_box ul.legend li .name {
+    font-size: 14px;
+    margin: 5px 0 0 14px;
+    text-overflow: ellipsis;
+    float: left
+}
+.widget_tally_box ul.legend p {
+    display: inline-block;
+    margin: 0
+}
+.widget_tally_box ul.verticle_bars li {
+    height: 140px;
+    width: 23%
+}
+.widget .verticle_bars li .progress.vertical.progress_wide {
+    width: 65%
+}
+ul.count2 {
+    width: 100%;
+    margin-left: 1px;
+    border: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+    padding: 10px 0
+}
+ul.count2 li {
+    width: 30%;
+    text-align: center
+}
+ul.count2 li h3 {
+    font-weight: 400;
+    margin: 0
+}
+ul.count2 li span {
+    font-weight: 300
+}
+.divider {
+    border-bottom: 1px solid #ddd;
+    margin: 10px
+}
+.divider-dashed {
+    border-top: 1px dashed #e7eaec;
+    background-color: #ffffff;
+    height: 1px;
+    margin: 10px 0
+}
+ul.messages {
+    padding: 0;
+    list-style: none
+}
+ul.messages li,
+.tasks li {
+    border-bottom: 1px dotted #e6e6e6;
+    padding: 8px 0
+}
+ul.messages li img.avatar,
+img.avatar {
+    height: 32px;
+    width: 32px;
+    float: left;
+    display: inline-block;
+    border-radius: 2px;
+    padding: 2px;
+    background: #f7f7f7;
+    border: 1px solid #e6e6e6
+}
+ul.messages li .message_date {
+    float: right;
+    text-align: right
+}
+ul.messages li .message_wrapper {
+    margin-left: 50px;
+    margin-right: 40px
+}
+ul.messages li .message_wrapper h4.heading {
+    font-weight: 600;
+    margin: 0;
+    cursor: pointer;
+    margin-bottom: 10px;
+    line-height: 100%
+}
+ul.messages li .message_wrapper blockquote {
+    padding: 0px 10px;
+    margin: 0;
+    border-left: 5px solid #eee
+}
+ul.user_data li {
+    margin-bottom: 6px
+}
+ul.user_data li p {
+    margin-bottom: 0
+}
+ul.user_data li .progress {
+    width: 90%
+}
+.project_progress .progress {
+    margin-bottom: 3px !important;
+    margin-top: 5px
+}
+.projects .list-inline {
+    margin: 0
+}
+.profile_title {
+    background: #F5F7FA;
+    border: 0;
+    padding: 7px 0;
+    display: -ms-flexbox;
+    display: flex
+}
+ul.stats-overview {
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 10px;
+    margin-bottom: 10px
+}
+ul.stats-overview li {
+    display: inline-block;
+    text-align: center;
+    padding: 0 15px;
+    width: 30%;
+    font-size: 14px;
+    border-right: 1px solid #e8e8e8
+}
+ul.stats-overview li:last-child {
+    border-right: 0
+}
+ul.stats-overview li .name {
+    font-size: 12px
+}
+ul.stats-overview li .value {
+    font-size: 14px;
+    font-weight: bold;
+    display: block
+}
+ul.stats-overview li:first-child {
+    padding-left: 0
+}
+ul.project_files li {
+    margin-bottom: 5px
+}
+ul.project_files li a i {
+    width: 20px
+}
+.project_detail p {
+    margin-bottom: 10px
+}
+.project_detail p.title {
+    font-weight: bold;
+    margin-bottom: 0
+}
+.avatar img {
+    border-radius: 50%;
+    max-width: 45px
+}
+.pricing {
+    background: #fff
+}
+.pricing .title {
+    background: #337ab7;
+    color: #fff;
+    padding: 15px 15px;
+    text-align: center;
+}
+.pricing .title h2 {
+    text-transform: capitalize;
+    font-size: 18px;
+    border-radius: 5px 5px 0 0;
+    margin: 0;
+    font-weight: 400
+}
+.pricing .title h1 {
+    font-size: 30px;
+    margin: 12px
+}
+.pricing .title span {
+    background: rgba(51, 51, 51, 0.28);
+    padding: 2px 5px
+}
+.pricing_features {
+    background: #FAFAFA;
+    padding: 20px 15px;
+    min-height: 230px;
+    font-size: 13.5px
+}
+.pricing_features ul li {
+    margin-top: 10px
+}
+.pricing_footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px
+}
+.pricing_footer p {
+    font-size: 13px;
+    padding: 10px 0 2px;
+    display: block
+}
+.ui-ribbon-container {
+    position: relative
+}
+.ui-ribbon-container .ui-ribbon-wrapper {
+    position: absolute;
+    overflow: hidden;
+    width: 85px;
+    height: 88px;
+    top: -3px;
+    right: -3px
+}
+.ui-ribbon-container.ui-ribbon-primary .ui-ribbon {
+    background-color: #5b90bf
+}
+.ui-ribbon-container .ui-ribbon {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    transform: rotate(45deg);
+    padding: 7px 0;
+    left: -5px;
+    top: 15px;
+    width: 120px;
+    line-height: 20px;
+    background-color: #555;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3)
+}
+.ui-ribbon-container.ui-ribbon-primary .ui-ribbon:after,
+.ui-ribbon-container.ui-ribbon-primary .ui-ribbon:before {
+    border-top: 2px solid #5b90bf
+}
+.ui-ribbon-container .ui-ribbon:before {
+    left: 0;
+    bottom: -1px
+}
+.ui-ribbon-container .ui-ribbon:before {
+    right: 0
+}
+.ui-ribbon-container .ui-ribbon:after,
+.ui-ribbon-container .ui-ribbon:before {
+    position: absolute;
+    content: " ";
+    line-height: 0;
+    border-top: 2px solid #555;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent
+}
+.thumbnail .image {
+    height: 120px;
+    overflow: hidden
+}
+.caption {
+    padding: 9px 5px;
+    background: #F7F7F7
+}
+.caption p {
+    margin-bottom: 5px
+}
+.thumbnail {
+    height: 190px;
+    overflow: hidden
+}
+.view {
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    box-shadow: 1px 1px 2px #e6e6e6;
+    cursor: default
+}
+.view .mask,
+.view .content {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0
+}
+.view img {
+    display: block;
+    position: relative
+}
+.view .tools {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    padding: 3px;
+    background: rgba(0, 0, 0, 0.35);
+    margin: 43px 0 0 0
+}
+.mask.no-caption .tools {
+    margin: 90px 0 0 0
+}
+.view .tools a {
+    display: inline-block;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 0 4px
+}
+.view p {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 12px;
+    position: relative;
+    color: #fff;
+    padding: 10px 20px 20px;
+    text-align: center
+}
+.view a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000
+}
+.view-first img {
+    transition: all 0.2s linear
+}
+.view-first .mask {
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out
+}
+.view-first .tools {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.2s ease-in-out
+}
+.view-first p {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.2s linear
+}
+.view-first:hover img {
+    transform: scale(1.1)
+}
+.view-first:hover .mask {
+    opacity: 1
+}
+.view-first:hover .tools,
+.view-first:hover p {
+    opacity: 1;
+    transform: translateY(0px)
+}
+.view-first:hover p {
+    transition-delay: 0.1s
+}
+.form-group.has-feedback span {
+    display: block !important;
+}
+.form-group .btn {
+    margin-bottom: -6px;
+}
+
+.input-group-btn .btn { margin-bottom:0; }
+
+/*!
+ * bootstrap-vertical-tabs - v1.2.1
+ * https://dbtek.github.io/bootstrap-vertical-tabs
+ * 2014-11-07
+ * Copyright (c) 2014 ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°smail Demirbilek
+ * License: MIT
+ */
+
+.tabs-left,
+.tabs-right {
+    border-bottom: none;
+    padding-top: 2px
+}
+.tabs-left {
+    border-right: 1px solid #F7F7F7
+}
+.tabs-right {
+    border-left: 1px solid #F7F7F7
+}
+.tabs-left>li,
+.tabs-right>li {
+    float: none;
+    margin-bottom: 2px
+}
+.tabs-left>li {
+    margin-right: -1px
+}
+.tabs-right>li {
+    margin-left: -1px
+}
+.tabs-left>li.active>a,
+.tabs-left>li.active>a:hover,
+.tabs-left>li.active>a:focus {
+    border-bottom-color: #F7F7F7;
+    border-right-color: transparent
+}
+.tabs-right>li.active>a,
+.tabs-right>li.active>a:hover,
+.tabs-right>li.active>a:focus {
+    border-bottom: 1px solid #F7F7F7;
+    border-left-color: transparent
+}
+.tabs-left>li>a {
+    border-radius: 4px 0 0 4px;
+    margin-right: 0;
+    display: block;
+    background: #F7F7F7;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+.tabs-right>li>a {
+    border-radius: 0 4px 4px 0;
+    margin-right: 0;
+    background: #F7F7F7;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+.sideways {
+    margin-top: 50px;
+    border: none;
+    position: relative
+}
+.sideways>li {
+    height: 20px;
+    width: 120px;
+    margin-bottom: 100px
+}
+.sideways>li>a {
+    border-bottom: 1px solid #ddd;
+    border-right-color: transparent;
+    text-align: center;
+    border-radius: 4px 4px 0px 0px
+}
+.sideways>li.active>a,
+.sideways>li.active>a:hover,
+.sideways>li.active>a:focus {
+    border-bottom-color: transparent;
+    border-right-color: #ddd;
+    border-left-color: #ddd
+}
+.sideways.tabs-left {
+    left: -50px
+}
+.sideways.tabs-right {
+    right: -50px
+}
+.sideways.tabs-right>li {
+    transform: rotate(90deg)
+}
+.sideways.tabs-left>li {
+    transform: rotate(-90deg)
+}
+.morris-hover {
+    position: absolute;
+    z-index: 1000
+}
+.morris-hover.morris-default-style {
+    padding: 6px;
+    color: #666;
+    background: rgba(243, 242, 243, 0.8);
+    border: solid 2px rgba(195, 194, 196, 0.8);
+    font-family: sans-serif;
+    font-size: 12px;
+    text-align: center
+}
+.morris-hover.morris-default-style .morris-hover-row-label {
+    font-weight: bold;
+    margin: 0.25em 0
+}
+.morris-hover.morris-default-style .morris-hover-point {
+    white-space: nowrap;
+    margin: 0.1em 0
+}
+.price {
+    font-size: 40px;
+    font-weight: 400;
+    color: #26B99A;
+    margin: 0
+}
+.prod_title {
+    border-bottom: 1px solid #DFDFDF;
+    padding-bottom: 5px;
+    margin: 30px 0;
+    font-size: 20px;
+    font-weight: 400
+}
+.product-image img {
+    width: 90%
+}
+.prod_color li {
+    margin: 0 10px
+}
+.prod_color li p {
+    margin-bottom: 0
+}
+.prod_size li {
+    padding: 0
+}
+.prod_color .color {
+    width: 25px;
+    height: 25px;
+    border: 2px solid rgba(51, 51, 51, 0.28) !important;
+    padding: 2px;
+    border-radius: 50px
+}
+.product_gallery a {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 10px;
+    border: 1px solid #e5e5e5
+}
+.product_gallery a img {
+    width: 100%;
+    margin-top: 15px
+}
+.product_price {
+    margin: 20px 0;
+    padding: 5px 10px;
+    background-color: #FFFFFF;
+    text-align: left;
+    border: 2px dashed #E0E0E0
+}
+.price-tax {
+    font-size: 18px
+}
+.product_social {
+    margin: 20px 0
+}
+.product_social ul li a i {
+    font-size: 35px
+}
+.login {
